@@ -7,7 +7,7 @@
   <div class="carousel-inner">
 
     <div class="carousel-item active" style="background-image: url('/img/pokemon.png'); background-size: cover; background-position: center; height: 400px;">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <div class="bg-dark bg-opacity-50 p-3 rounded">
           <h5>Pokémon TCG</h5>
           <a href="{{ url('/cards?categoria=pokemon') }}" class="btn btn-warning">Explorar Pokémon</a>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="carousel-item" style="background-image: url('/img/onepiece.jpg'); background-size: cover; background-position: center; height: 400px;">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <div class="bg-dark bg-opacity-50 p-3 rounded">
           <h5>ONE PIECE Card Game</h5>
           <a href="{{ url('/cards?categoria=onepiece') }}" class="btn btn-danger">Ver Barajas de One Piece</a>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="carousel-item" style="background-image: url('/img/digimon.jpg'); background-size: cover; background-position: center; height: 400px;">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <div class="bg-dark bg-opacity-50 p-3 rounded">
           <h5>Digimon Card Game</h5>
           <a href="{{ url('/cards?categoria=digimon') }}" class="btn btn-primary">Descubrir Digimon</a>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="carousel-item" style="background-image: url('/img/magic.jpg'); background-size: cover; background-position: center; height: 400px;">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <div class="bg-dark bg-opacity-50 p-3 rounded">
           <h5>Magic: The Gathering</h5>
           <a href="{{ url('/cards?categoria=magic') }}" class="btn btn-success">Buscar Cartas Magic</a>

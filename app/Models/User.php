@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function cartas()
+    {
+        return $this->hasMany(Carta::class, 'user_id');
+    }
+
+    public function intercambios()
+    {
+        return $this->hasMany(Intercambio::class, 'user_id');
+    }
 }
