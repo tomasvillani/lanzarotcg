@@ -12,7 +12,27 @@
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="/register" class="btn btn-primary d-md-none">Registrarse</a>
+
+        @guest
+          <!-- Registrarse en móvil -->
+          <a href="{{ route('register') }}" class="btn btn-primary d-md-none">Registrarse</a>
+        @else
+          <!-- Usuario en móvil -->
+          <div class="dropdown d-md-none">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="userMenuButtonMobile" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ Auth::user()->name }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButtonMobile">
+              <li><a class="dropdown-item" href="{{ route('dashboard') }}">Perfil</a></li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        @endguest
       </div>
     </div>
 
@@ -30,8 +50,26 @@
       </ul>
     </div>
 
+    <!-- Usuario o Registrarse en desktop -->
     <div class="d-none d-md-flex align-items-center position-absolute end-0 top-50 translate-middle-y me-3">
-      <a href="/register" class="btn btn-primary">Registrarse</a>
+      @guest
+        <a href="{{ route('register') }}" class="btn btn-primary">Registrarse</a>
+      @else
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ Auth::user()->name }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
+            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Perfil</a></li>
+            <li>
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="dropdown-item">Cerrar sesión</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      @endguest
     </div>
   </div>
 </nav>

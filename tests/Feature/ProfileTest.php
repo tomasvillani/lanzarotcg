@@ -28,7 +28,7 @@ class ProfileTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->patch('/profile', [
-                'name' => 'Test User',
+                'name' => 'testuser',
                 'email' => 'test@example.com',
             ]);
 
@@ -38,7 +38,7 @@ class ProfileTest extends TestCase
 
         $user->refresh();
 
-        $this->assertSame('Test User', $user->name);
+        $this->assertSame('testuser', $user->name);
         $this->assertSame('test@example.com', $user->email);
         $this->assertNull($user->email_verified_at);
     }
@@ -50,7 +50,7 @@ class ProfileTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->patch('/profile', [
-                'name' => 'Test User',
+                'name' => 'testuser',
                 'email' => $user->email,
             ]);
 
@@ -63,12 +63,15 @@ class ProfileTest extends TestCase
 
     public function test_user_can_delete_their_account(): void
     {
-        $user = User::factory()->create();
+        // Creamos un usuario con contraseña conocida
+        $user = User::factory()->create([
+            'password' => bcrypt('password'), // Asegura que la contraseña sea 'password'
+        ]);
 
         $response = $this
             ->actingAs($user)
             ->delete('/profile', [
-                'password' => 'password',
+                'password' => 'password', // Esta coincide con la que seteamos arriba
             ]);
 
         $response
@@ -91,9 +94,10 @@ class ProfileTest extends TestCase
             ]);
 
         $response
-            ->assertSessionHasErrorsIn('userDeletion', 'password')
+            ->assertSessionHasErrors('password')
             ->assertRedirect('/profile');
 
         $this->assertNotNull($user->fresh());
     }
+
 }

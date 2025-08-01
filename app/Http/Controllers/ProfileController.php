@@ -42,9 +42,14 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
+        $messages = [
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.current_password' => 'La contraseña actual es incorrecta.',
+        ];
+
+        $request->validate([
             'password' => ['required', 'current_password'],
-        ]);
+        ], $messages);
 
         $user = $request->user();
 
@@ -55,6 +60,7 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return redirect('/')->with('status', 'account-deleted');
     }
+
 }

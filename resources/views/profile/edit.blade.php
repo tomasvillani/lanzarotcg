@@ -1,29 +1,54 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.layout')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+@section('title', 'Perfil de Usuario')
+
+@section('content')
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Perfil</h2>
+
+    @if ($errors->has('password'))
+        <div class="alert alert-danger">
+            La contraseña ingresada es incorrecta. No se eliminó la cuenta.
+        </div>
+    @endif
+
+    <div class="row justify-content-center gy-4">
+        <div class="col-md-8">
+
+            {{-- Información de perfil --}}
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Información del Perfil</h5>
+                    <p class="small text-muted mb-0">Actualiza la información de tu perfil y correo electrónico.</p>
+                </div>
+                <div class="card-body">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+            {{-- Actualizar contraseña --}}
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Actualizar Contraseña</h5>
+                    <p class="small text-muted mb-0">Asegúrate de usar una contraseña larga y segura.</p>
+                </div>
+                <div class="card-body">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
+            {{-- Eliminar cuenta --}}
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0 text-danger">Eliminar Cuenta</h5>
+                    <p class="small text-muted mb-0">Una vez eliminada, no podrás recuperar tu cuenta ni datos.</p>
+                </div>
+                <div class="card-body">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
+
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection

@@ -14,8 +14,8 @@ class CreateIntercambiosTable extends Migration
             $table->foreignId('carta_id')->constrained('cartas')->onDelete('cascade'); 
             $table->foreignId('carta_ofrecida_id')->constrained('cartas')->onDelete('cascade'); 
             $table->date('fecha');
-            $table->string('lugar')->nullable();
-            $table->string('estado')->default('pendiente');
+            $table->string('lugar');
+            $table->enum('estado', ['p', 'a', 'r'])->default('p'); // p: pendiente, a: aceptado, r: rechazado
             $table->timestamps();
         });
     }
