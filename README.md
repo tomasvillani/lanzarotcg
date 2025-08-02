@@ -118,7 +118,7 @@ php artisan serve
 
 De esta manera, si accedes por 127.0.0.1:8000, la página debe aparecer sin problema.
 
-### Documentos de interés
+## Documentos de interés
 
 Consulta los siguientes documentos para obtener información detallada sobre el proceso de desarrollo:
 
