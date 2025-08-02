@@ -4,6 +4,15 @@
 
 @section('content')
 <div class="container my-5">
+
+    @if($errors->any())
+        <div class="alert alert-danger text-center">
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+            @endforeach
+        </div>
+    @endif
+
     @if(session('success'))
         <div class="alert alert-success text-center">
             {{ session('success') }}
@@ -36,28 +45,51 @@
             </div>
 
             <div class="mt-4">
-                @auth
-                    @if (auth()->id() !== $card->user_id)
-                        @if ($fuePropuestaAmi && $intercambioRecibido)
-                            <div class="alert alert-success text-center">
-                                Te han propuesto un intercambio con esta carta
+                @if ($card->isUnavailable())
+                    <div class="alert alert-warning text-center">
+                        Esta carta ya fue intercambiada.
+                    </div>
+                    <button class="btn btn-secondary btn-lg w-100" disabled>Intercambio no disponible</button>
+                @else
+                    @auth
+                        @if (auth()->id() !== $card->user_id)
+                            @if ($isUnavailable)
+                                <div class="alert alert-secondary text-center">
+                                    Esta carta ya está en un intercambio aceptado.
+                                </div>
+                            @elseif ($fuePropuestaAmi && $intercambioRecibido)
+                                <div class="alert alert-success text-center">
+                                    Te han propuesto un intercambio con esta carta
+                                </div>
+                                <a href="{{ route('trades.show', $intercambioRecibido->id) }}" class="btn btn-success btn-lg w-100">
+                                    Ver propuesta recibida
+                                </a>
+                            @elseif ($yaPropuesto && $intercambio)
+                                <a href="{{ route('trades.show', $intercambio->id) }}" class="btn btn-secondary btn-lg w-100">
+                                    Ya has propuesto un intercambio - Ver detalle
+                                </a>
+                            @else
+                                <a href="{{ route('trades.create', $card) }}" class="btn btn-primary btn-lg w-100">¡Me interesa!</a>
+                            @endif
+                        @else
+                            @if ($isUnavailable)
+                                <div class="alert alert-secondary text-center">
+                                    Esta carta ya está en un intercambio aceptado.
+                                </div>
+                            @else
+                                <a href="{{ route('trades.received', $card) }}" class="btn btn-secondary btn-lg w-100">Ver interesados</a>
+                            @endif
+                        @endif
+                    @else
+                        @if ($isUnavailable)
+                            <div class="alert alert-secondary text-center">
+                                Esta carta ya está en un intercambio aceptado.
                             </div>
-                            <a href="{{ route('trades.show', $intercambioRecibido->id) }}" class="btn btn-success btn-lg w-100">
-                                Ver propuesta recibida
-                            </a>
-                        @elseif ($yaPropuesto && $intercambio)
-                            <a href="{{ route('trades.show', $intercambio->id) }}" class="btn btn-secondary btn-lg w-100">
-                                Ya has propuesto un intercambio - Ver detalle
-                            </a>
                         @else
                             <a href="{{ route('trades.create', $card) }}" class="btn btn-primary btn-lg w-100">¡Me interesa!</a>
                         @endif
-                    @else
-                        <a href="{{ route('trades.received', $card) }}" class="btn btn-secondary btn-lg w-100">Ver interesados</a>
-                    @endif
-                @else
-                    <a href="{{ route('trades.create', $card) }}" class="btn btn-primary btn-lg w-100">¡Me interesa!</a>
-                @endauth
+                    @endauth
+                @endif
             </div>
         </div>
     </div>

@@ -56,8 +56,15 @@ class MisCartasController extends Controller
 
     public function edit(Carta $carta)
     {
+        // Control estricto de acceso
         if ($carta->user_id !== Auth::id()) {
-            abort(403);
+            abort(403, 'No tienes permiso para editar esta carta.');
+        }
+
+        // Verificar si la carta está en intercambio aceptado (no modificable)
+        if ($carta->isUnavailable()) {
+            return redirect()->route('cards.show', $carta)
+                ->with('error', 'Esta carta ya está en un intercambio aceptado y no puede modificarse.');
         }
 
         $categoriasAmigables = [
@@ -113,7 +120,12 @@ class MisCartasController extends Controller
     public function destroy(Carta $carta)
     {
         if ($carta->user_id !== Auth::id()) {
-            abort(403);
+            abort(403, 'No tienes permiso para eliminar esta carta.');
+        }
+
+        if ($carta->isUnavailable()) {
+            return redirect()->route('cards.show', $carta)
+                ->with('error', 'Esta carta ya está en un intercambio aceptado y no puede eliminarse.');
         }
 
         if ($carta->imagen) {

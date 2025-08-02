@@ -60,16 +60,7 @@ class CartasController extends Controller
         $card = Carta::with('user')->findOrFail($id);
 
         // Verificar si está en un intercambio aceptado
-        $isUnavailable = Intercambio::where('estado', 'a')
-            ->where(function ($query) use ($card) {
-                $query->where('carta_id', $card->id)
-                    ->orWhere('carta_ofrecida_id', $card->id);
-            })->exists();
-
-        if ($isUnavailable) {
-            // Opcional: puedes mostrar un mensaje de que la carta no está disponible o simplemente abortar
-            abort(403, 'Esta carta ya fue intercambiada y no está disponible.');
-        }
+        $isUnavailable = $card->isUnavailable(); // Usa tu método del modelo correctamente
 
         $categoriasAmigables = [
             'pokemon' => 'Pokémon',
@@ -111,8 +102,10 @@ class CartasController extends Controller
             'yaPropuesto',
             'intercambio',
             'fuePropuestaAmi',
-            'intercambioRecibido'
+            'intercambioRecibido',
+            'isUnavailable' // Aquí la incluimos
         ));
+
     }
 
 }

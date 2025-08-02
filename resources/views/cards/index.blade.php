@@ -10,6 +10,14 @@
     </form>
   </div>
 
+  @if($errors->any())
+        <div class="alert alert-danger text-center">
+            @foreach ($errors->all() as $error)
+                <div>{{ $error }}</div>
+            @endforeach
+        </div>
+    @endif
+
   @if ($cards->count() > 0)
         <!-- Mostrar cartas -->
         <div class="container">

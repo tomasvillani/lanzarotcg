@@ -40,14 +40,17 @@
                             </div>
 
                             <div class="d-flex justify-content-between mt-3">
-                                <a href="{{ route('mycards.edit', $carta) }}" class="btn btn-outline-warning btn-sm">Editar</a>
-                                <a href="{{ route('cards.show', $carta) }}" class="btn btn-outline-primary btn-sm">Ver más</a>
+                                <a href="{{ route('cards.show', $carta) }}" class="btn btn-outline-primary btn-sm w-100">Ver más</a>
 
-                                <form action="{{ route('mycards.destroy', $carta) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar esta carta?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
-                                </form>
+                                @unless ($carta->isUnavailable())
+                                    <a href="{{ route('mycards.edit', $carta) }}" class="btn btn-outline-warning btn-sm">Editar</a>
+
+                                    <form action="{{ route('mycards.destroy', $carta) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar esta carta?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                                    </form>
+                                @endunless
                             </div>
 
                         </div>

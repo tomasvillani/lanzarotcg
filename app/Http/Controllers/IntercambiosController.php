@@ -12,7 +12,9 @@ class IntercambiosController extends Controller
 {
     public function create(Carta $card)
     {
-        // Verificar si la carta está disponible
+        $user = Auth::user();
+
+        // Verificar si la carta está disponible (ya estaba)
         $isUnavailable = Intercambio::where('estado', 'a')
             ->where(function ($query) use ($card) {
                 $query->where('carta_id', $card->id)
@@ -23,16 +25,25 @@ class IntercambiosController extends Controller
             return redirect()->route('cards.index')->withErrors('La carta no está disponible para intercambio.');
         }
 
+        // Verificar si el usuario ya tiene una propuesta pendiente para esta carta
+        $yaPropuso = Intercambio::where('user_id', $user->id)
+            ->where('carta_id', $card->id)
+            ->where('estado', 'p')
+            ->exists();
+
+        if ($yaPropuso) {
+            return redirect()->route('cards.show', $card)->withErrors('Ya tienes una propuesta pendiente para esta carta.');
+        }
+
         // Obtener solo cartas propias disponibles para ofrecer (filtrar también cartas no disponibles)
-        $user = Auth::user();
         $misCartas = Carta::where('user_id', $user->id)
-        ->whereDoesntHave('intercambiosOriginales', function ($q) {
-            $q->where('estado', 'a');
-        })
-        ->whereDoesntHave('intercambiosOfrecidos', function ($q) {
-            $q->where('estado', 'a');
-        })
-        ->get();
+            ->whereDoesntHave('intercambiosOriginales', function ($q) {
+                $q->where('estado', 'a');
+            })
+            ->whereDoesntHave('intercambiosOfrecidos', function ($q) {
+                $q->where('estado', 'a');
+            })
+            ->get();
 
         return view('trades.create', compact('card', 'misCartas'));
     }
@@ -62,6 +73,16 @@ class IntercambiosController extends Controller
         // Validación extra para evitar intercambio consigo mismo
         if ($card->user_id == $user->id) {
             return redirect()->back()->withErrors(['offered_card_id' => 'No puedes proponer un intercambio para una carta que es tuya.']);
+        }
+
+        // Validar que el usuario no tenga ya una propuesta pendiente para esta carta
+        $yaPropuso = Intercambio::where('user_id', $user->id)
+            ->where('carta_id', $card->id)
+            ->where('estado', 'p')
+            ->exists();
+
+        if ($yaPropuso) {
+            return redirect()->back()->withErrors(['offered_card_id' => 'Ya tienes una propuesta pendiente para esta carta.']);
         }
 
         Intercambio::create([
@@ -106,10 +127,21 @@ class IntercambiosController extends Controller
             });
 
         if ($card) {
-            // Verificar que el usuario sea dueño de la carta para filtrar
+            // Verificar que el usuario sea dueño de la carta
             if ($card->user_id !== $user->id) {
                 abort(403, 'No tienes permiso para ver los intercambios recibidos para esta carta.');
             }
+
+            // Verificar si la carta ya fue aceptada en un intercambio
+            $yaIntercambiada = Intercambio::where(function ($q) use ($card) {
+                $q->where('carta_id', $card->id)
+                ->orWhere('carta_ofrecida_id', $card->id);
+            })->where('estado', 'a')->exists();
+
+            if ($yaIntercambiada) {
+                abort(403, 'Esta carta ya fue intercambiada. No puedes ver sus intercambios recibidos.');
+            }
+
             $query->where('carta_id', $card->id);
         }
 
