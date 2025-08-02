@@ -2,53 +2,125 @@
 
 ## LanzaroTCG
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+LanzaroTCG es una plataforma web diseñada para facilitar el intercambio de cartas de juegos de cartas coleccionables (TCG), actualmente soportando colecciones de One Piece, Digimon, Pokémon y Magic: The Gathering. Los usuarios pueden crear, proponer y gestionar intercambios de manera sencilla y segura, conectando con otros coleccionistas para ampliar sus mazos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+LanzaroTCG surge de mi interés tanto por el desarrollo web como por el mundo de los TCG, especialmente Pokémon, que ha sido una gran inspiración. La idea fue crear un espacio donde los aficionados pudieran intercambiar cartas de forma cómoda y confiable.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Además, LanzaroTCG surgió para cubrir una necesidad real en la comunidad de Lanzarote, donde no existía hasta ahora un espacio digital dedicado exclusivamente al intercambio de cartas de TCG. De esta forma, busca fomentar la interacción y el crecimiento de la comunidad local y más allá.
 
-## Learning Laravel
+## ¿Qué pueden hacer los usuarios de LanzaroTCG?
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+En LanzaroTCG, los usuarios pueden gestionar su colección de cartas de manera intuitiva, agregando, editando o eliminando las cartas que poseen. También pueden proponer intercambios ofreciendo cartas propias y solicitando cartas de otros coleccionistas.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Además, la plataforma permite gestionar todas las propuestas de intercambio recibidas, aceptándolas, rechazándolas o consultando detalles para tomar la mejor decisión. Así, LanzaroTCG facilita un proceso seguro y transparente para que los usuarios amplíen y mejoren sus mazos con confianza.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalación
 
-## Laravel Sponsors
+Para ejecutar **LanzaroTCG** localmente, sigue estos pasos:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Requisitos previos:
 
-### Premium Partners
+- PHP >= 8.1 , y todas las extensiones necesarias:
+```
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install php php-cli php-mbstring php-xml php-bcmath php-curl php-zip unzip curl -y
+```
+Confirma la instalación de PHP:
+```
+php -v
+```
+- Composer
+```
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+Verifica la instalación:
+```
+composer --version
+```
+- MySQL
+```
+sudo apt install mysql-server php-mysql -y
+```
+Configura la base de datos y el usuario correspondiente:
+```
+sudo mysql
+CREATE DATABASE lanzarotcg;
+CREATE USER 'lanzarotcg'@'localhost' IDENTIFIED BY 'lanzarotcg';
+GRANT ALL PRIVILEGES ON *.* TO 'lanzarotcg'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+- Node.js
+```
+sudo apt install nodejs npm
+```
+Confirma la instalación:
+```
+node -v
+npm -v
+```
+- Git
+```
+sudo apt install git
+```
+Confirma la instalación:
+```
+git --version
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. Clona el repositorio:
+```
+git clone https://github.com/tomasvillani/lanzarotcg.git
+```
+2. Accede a la carpeta:
+```
+cd lanzarotcg
+```
+3. Otorga los permisos correspondientes:
+```
+sudo chmod 777 -R ./*
+```
+4. Instala las dependencias de Composer y de Node.js:
+```
+composer install
+npm install
+npm run build
+```
+5. Copia el archivo .env.example a un archivo .env.
+6. Modifica estas líneas del .env:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=lanzarotcg
+DB_USERNAME=lanzarotcg
+DB_PASSWORD=lanzarotcg
+```
+7. Genera la clave de encriptación:
+```
+php artisan key:generate
+```
+8. Ejecuta las migraciones:
+```
+php artisan migrate
+```
+9. Para poder almacenar las imágenes para las cartas, ejecuta el siguiente comando:
+```
+php artisan storage:link
+```
+10. Inicia el servicio:
+```
+php artisan serve
+```
 
-## Contributing
+De esta manera, si accedes por 127.0.0.1:8000, la página debe aparecer sin problema.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Documentos de interés
 
-## Code of Conduct
+Consulta los siguientes documentos para obtener información detallada sobre el proceso de desarrollo:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- [Documento de análisis](https://drive.google.com/file/d/1cfj9VyrZCsYJsvvssfEttVlIQ6ubsBtb/view?usp=sharing)
+- [Documento de diseño](https://drive.google.com/file/d/1MrqSNClZ07Ei8lgATAisC2sm_jUi9F7z/view?usp=sharing)
