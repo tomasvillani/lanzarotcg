@@ -118,6 +118,15 @@ php artisan serve
 
 De esta manera, si accedes por 127.0.0.1:8000, la página debe aparecer sin problema.
 
+### Tareas programadas (opcional)
+
+LanzaroTCG incluye una tarea programada que elimina automáticamente los intercambios caducados y las cartas asociadas a partir del día siguiente de la propuesta.
+
+Para que esta funcionalidad funcione correctamente en entornos de producción, debes añadir el siguiente cron job a tu sistema:
+```
+* * * * * cd /ruta/a/tu/proyecto && php artisan schedule:run >> /dev/null 2>&1
+```
+
 ## Documentos de interés
 
 Consulta los siguientes documentos para obtener información detallada sobre el proceso de desarrollo:
