@@ -124,7 +124,7 @@ LanzaroTCG incluye una tarea programada que elimina automáticamente los interca
 
 Para que esta funcionalidad funcione correctamente en entornos de producción, debes añadir el siguiente cron job a tu sistema:
 ```
-* * * * * cd /ruta/a/tu/proyecto && php artisan schedule:run >> /dev/null 2>&1
+* * * * * cd lanzarotcg && php artisan schedule:run >> /dev/null 2>&1
 ```
 
 ## Documentos de interés
