@@ -136,4 +136,4 @@ Consulta los siguientes documentos para obtener información detallada sobre el 
 
 ## Vídeo de Youtube
 
-Puedes ver el vídeo de mi proyecto en Youtube [aquí](https://youtu.be/0v9KCnHHahw?si=e4A0IDinF8JPVks3)
+Puedes ver el vídeo del proyecto en Youtube [aquí](https://youtu.be/0v9KCnHHahw?si=e4A0IDinF8JPVks3)
