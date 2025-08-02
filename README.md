@@ -133,3 +133,7 @@ Consulta los siguientes documentos para obtener información detallada sobre el 
 
 - [Documento de análisis](https://drive.google.com/file/d/1cfj9VyrZCsYJsvvssfEttVlIQ6ubsBtb/view?usp=sharing)
 - [Documento de diseño](https://drive.google.com/file/d/1MrqSNClZ07Ei8lgATAisC2sm_jUi9F7z/view?usp=sharing)
+
+## Vídeo de Youtube
+
+Puedes ver el vídeo de nuestro proyecto en Youtube [aquí](https://youtu.be/0v9KCnHHahw?si=e4A0IDinF8JPVks3)
