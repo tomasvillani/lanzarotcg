@@ -136,7 +136,7 @@ Consulta los siguientes documentos para obtener información detallada sobre el 
 
 ## Visita el Proyecto Online
 
-Puedes visitar nuestra página web [aquí](https://lanzarotcg.alwaysdata.net/)
+Puedes visitar mi página web [aquí](https://lanzarotcg.alwaysdata.net/)
 
 ## Vídeo de Youtube
 
