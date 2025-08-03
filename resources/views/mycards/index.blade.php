@@ -59,9 +59,9 @@
             @endforeach
         </div>
 
-        <div class="d-flex justify-content-center">
-            {{ $cartas->links() }}
-        </div>
+        <div class="d-flex justify-content-center mt-4">
+            {{ $cartas->withQueryString()->onEachSide(1)->links('pagination::bootstrap-5') }}
+          </div>
 
     @else
         <p class="text-center fs-5 mt-5">No has subido cartas todavía.</p>
