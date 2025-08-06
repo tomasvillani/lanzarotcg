@@ -6,3 +6,15 @@
     width: auto !important;
   }
 }
+
+/* Navbar tiene que estar por encima del carrusel */
+.navbar {
+  position: relative;
+  z-index: 1100; /* Más alto que el carrusel que tienes en 1 */
+}
+
+/* Dropdown menú encima */
+.dropdown-menu {
+  position: absolute !important;
+  z-index: 1200 !important;
+}
