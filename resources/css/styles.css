@@ -7,14 +7,25 @@
   }
 }
 
-/* Fix para que los menús dropdown no se oculten detrás del carrusel */
+/* --- Asegura que el dropdown se muestre por encima --- */
 .dropdown-menu {
-  z-index: 1050 !important;
+  z-index: 1060 !important; /* Bootstrap usa 1050, mejor un poco más */
+  position: absolute !important;
 }
 
-/* Asegura que el carrusel y sus elementos no estén por encima del dropdown */
+/* --- Forzamos menor z-index al carrusel y su fondo --- */
 .carousel,
 .carousel-item,
 .carousel-caption {
   z-index: 1 !important;
+  position: relative !important;
+}
+
+/* --- Prevenir stacking inesperado en el fondo de los .carousel-item --- */
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  z-index: -1;
 }
