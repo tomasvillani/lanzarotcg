@@ -6,3 +6,15 @@
     width: auto !important;
   }
 }
+
+/* Fix para que los menús dropdown no se oculten detrás del carrusel */
+.dropdown-menu {
+  z-index: 1050 !important;
+}
+
+/* Asegura que el carrusel y sus elementos no estén por encima del dropdown */
+.carousel,
+.carousel-item,
+.carousel-caption {
+  z-index: 1 !important;
+}
