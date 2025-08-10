@@ -2,17 +2,17 @@
 
 ## LanzaroTCG
 
-LanzaroTCG es una plataforma web diseñada para facilitar el intercambio de cartas de juegos de cartas coleccionables (TCG), actualmente soportando colecciones de One Piece, Digimon, Pokémon y Magic: The Gathering. Los usuarios pueden crear, proponer y gestionar intercambios de manera sencilla y segura, conectando con otros coleccionistas para ampliar sus mazos.
+**LanzaroTCG** es una plataforma web diseñada para facilitar el intercambio de cartas de juegos de cartas coleccionables (TCG), actualmente soportando colecciones de One Piece, Digimon, Pokémon y Magic: The Gathering. Los usuarios pueden crear, proponer y gestionar intercambios de manera sencilla y segura, conectando con otros coleccionistas para ampliar sus mazos.
 
-LanzaroTCG surge de mi interés tanto por el desarrollo web como por el mundo de los TCG, especialmente Pokémon, que ha sido una gran inspiración. La idea fue crear un espacio donde los aficionados pudieran intercambiar cartas de forma cómoda y confiable.
+**LanzaroTCG** surge de mi interés tanto por el desarrollo web como por el mundo de los TCG, especialmente Pokémon, que ha sido una gran inspiración. La idea fue crear un espacio donde los aficionados pudieran intercambiar cartas de forma cómoda y confiable.
 
-Además, LanzaroTCG surgió para cubrir una necesidad real en la comunidad de Lanzarote, donde no existía hasta ahora un espacio digital dedicado exclusivamente al intercambio de cartas de TCG. De esta forma, busca fomentar la interacción y el crecimiento de la comunidad local y más allá.
+Además, **LanzaroTCG** surgió para cubrir una necesidad real en la comunidad de Lanzarote, donde no existía hasta ahora un espacio digital dedicado exclusivamente al intercambio de cartas de TCG. De esta forma, busca fomentar la interacción y el crecimiento de la comunidad local y más allá.
 
 ## ¿Qué pueden hacer los usuarios de LanzaroTCG?
 
-En LanzaroTCG, los usuarios pueden gestionar su colección de cartas de manera intuitiva, agregando, editando o eliminando las cartas que poseen. También pueden proponer intercambios ofreciendo cartas propias y solicitando cartas de otros coleccionistas.
+En **LanzaroTCG**, los usuarios pueden gestionar su colección de cartas de manera intuitiva, agregando, editando o eliminando las cartas que poseen. También pueden proponer intercambios ofreciendo cartas propias y solicitando cartas de otros coleccionistas.
 
-Además, la plataforma permite gestionar todas las propuestas de intercambio recibidas, aceptándolas, rechazándolas o consultando detalles para tomar la mejor decisión. Así, LanzaroTCG facilita un proceso seguro y transparente para que los usuarios amplíen y mejoren sus mazos con confianza.
+Además, la plataforma permite gestionar todas las propuestas de intercambio recibidas, aceptándolas, rechazándolas o consultando detalles para tomar la mejor decisión. Así, **LanzaroTCG** facilita un proceso seguro y transparente para que los usuarios amplíen y mejoren sus mazos con confianza.
 
 ## Instalación
 
